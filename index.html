@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Дашборд CFO</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Кастомные стили для скроллбара таблиц */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.2); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5); 
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#0B0F19] text-slate-300 font-sans min-h-screen p-4 md:p-8 selection:bg-sky-500/30">
+    <div class="max-w-7xl mx-auto">
+        <!-- Блок с картинкой -->
+        <div class="mb-6">
+            <a href="https://yapx.ru/image/dZBeO" title="Изображение загружено на фотохостинг yapx.ru" target="_blank" class="inline-block">
+                <img src="https://i.yapx.ru/dZBeO.png" alt="Смотреть на фотохостинг сайте yapx.ru" class="h-20 object-contain drop-shadow-[0_0_15px_rgba(56,189,248,0.2)] hover:drop-shadow-[0_0_25px_rgba(56,189,248,0.5)] transition-all duration-300 rounded-xl">
+            </a>
+        </div>
+
+        <!-- Header -->
+        <header class="mb-8 border-b border-slate-800 pb-6">
+            <div class="flex items-center space-x-3 mb-2">
+                <i data-lucide="zap" class="text-sky-400 w-7 h-7"></i>
+                <h1 class="text-3xl font-bold text-white tracking-tight">AI Дашборд CFO</h1>
+            </div>
+            <p class="text-slate-500 font-mono text-sm ml-10">абсолютный анализ форм №1 и №2 :: [2023-2025]</p>
+        </header>
+
+        <!-- KPI Panel -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="relative bg-slate-900 p-6 rounded-xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-sky-500/50 transition-colors duration-300">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="text-slate-400 font-medium text-sm tracking-wide uppercase">Выручка</div>
+                    <div class="p-2 rounded-lg bg-slate-800 text-sky-400 border border-slate-700">
+                        <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <div class="text-2xl font-bold text-white mb-2 font-mono">2 648 127</div>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                        <span class="font-mono">+45.7%</span>
+                        <span class="text-slate-500 ml-2 text-xs uppercase">г/г</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-slate-900 p-6 rounded-xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-rose-500/50 transition-colors duration-300">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-rose-500/10 rounded-full blur-3xl group-hover:bg-rose-500/20 transition-all duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="text-slate-400 font-medium text-sm tracking-wide uppercase">Чистая прибыль</div>
+                    <div class="p-2 rounded-lg bg-slate-800 text-rose-400 border border-slate-700">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <div class="text-2xl font-bold text-white mb-2 font-mono">13 778</div>
+                    <div class="flex items-center text-sm text-rose-400">
+                        <i data-lucide="trending-down" class="w-4 h-4 mr-1"></i>
+                        <span class="font-mono">-5.6%</span>
+                        <span class="text-slate-500 ml-2 text-xs uppercase">г/г</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-slate-900 p-6 rounded-xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-amber-500/50 transition-colors duration-300">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="text-slate-400 font-medium text-sm tracking-wide uppercase">Дебиторка (долги сетей)</div>
+                    <div class="p-2 rounded-lg bg-slate-800 text-amber-400 border border-slate-700">
+                        <i data-lucide="truck" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <div class="text-2xl font-bold text-white mb-2 font-mono">199 346</div>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                        <span class="font-mono">+105.3%</span>
+                        <span class="text-slate-500 ml-2 text-xs uppercase">г/г</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-slate-900 p-6 rounded-xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-fuchsia-500/50 transition-colors duration-300">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-fuchsia-500/10 rounded-full blur-3xl group-hover:bg-fuchsia-500/20 transition-all duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="text-slate-400 font-medium text-sm tracking-wide uppercase">Кредиты и займы (короткие)</div>
+                    <div class="p-2 rounded-lg bg-slate-800 text-fuchsia-400 border border-slate-700">
+                        <i data-lucide="banknote" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <div class="text-2xl font-bold text-white mb-2 font-mono">63 748</div>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                        <span class="font-mono">+4.1%</span>
+                        <span class="text-slate-500 ml-2 text-xs uppercase">г/г</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap gap-2 mb-6 bg-slate-900 p-1 rounded-lg inline-flex border border-slate-800" id="tabs-nav">
+            <button data-tab="overview" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Инсайты AI</button>
+            <button data-tab="ratios" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 bg-slate-800 text-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.2)]">Коэффициенты</button>
+            <button data-tab="pnl" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Форма №2 (ОПУ)</button>
+            <button data-tab="balance" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Форма №1 (Баланс)</button>
+        </div>
+
+        <!-- RATIOS TAB -->
+        <div id="tab-ratios" class="tab-content active">
+            <div class="space-y-6">
+                <div class="bg-slate-900/80 backdrop-blur-md p-6 rounded-xl border border-slate-800/80 shadow-[0_0_20px_rgba(14,165,233,0.05)] relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <h3 class="text-xl font-bold text-white flex items-center mb-6 relative z-10">
+                        <i data-lucide="pie-chart" class="mr-3 text-sky-400 drop-shadow-[0_0_5px_rgba(56,189,248,0.5)]"></i>
+                        финансовые коэффициенты
+                        <span class="ml-3 px-2 py-0.5 rounded text-[10px] bg-sky-500/10 text-sky-400 border border-sky-500/20 tracking-widest uppercase font-mono">live_calc</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8 relative z-10" id="ratios-container">
+                        <!-- Cards injected via JS -->
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-10 relative z-10">
+                        <div class="h-80 w-full p-4 border border-slate-800/80 rounded-xl bg-slate-950/50 shadow-inner flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="activity" class="w-4 h-4 text-fuchsia-400 mr-2"></i>
+                                <h4 class="text-slate-400 font-medium text-xs uppercase tracking-widest font-mono">динамика показателей риска (2023-2025)</h4>
+                            </div>
+                            <div class="flex-grow relative">
+                                <canvas id="chartRisk"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="h-80 w-full p-4 border border-slate-800/80 rounded-xl bg-slate-950/50 shadow-inner flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="clock" class="w-4 h-4 text-amber-400 mr-2"></i>
+                                <h4 class="text-slate-400 font-medium text-xs uppercase tracking-widest font-mono">финансовый цикл в днях (2024-2025)</h4>
+                            </div>
+                            <div class="flex-grow relative">
+                                <canvas id="chartCycle"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW TAB -->
+        <div id="tab-overview" class="tab-content">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6" id="insights-container">
+                <!-- Insights injected via JS -->
+            </div>
+        </div>
+
+        <!-- PNL TAB -->
+        <div id="tab-pnl" class="tab-content">
+            <div class="space-y-6">
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 h-96 flex flex-col shadow-inner">
+                    <h4 class="text-slate-400 font-medium text-xs uppercase tracking-widest font-mono mb-4">динамика выручки и прибыли</h4>
+                    <div class="flex-grow relative">
+                        <canvas id="chartPnl"></canvas>
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm">
+                    <table class="w-full text-sm text-left text-slate-300 font-mono">
+                        <thead class="text-xs text-slate-400 uppercase bg-slate-800/50 border-b border-slate-800 sticky top-0">
+                            <tr>
+                                <th class="px-4 py-3">Код</th>
+                                <th class="px-4 py-3">Статья</th>
+                                <th class="px-4 py-3 text-right">2024</th>
+                                <th class="px-4 py-3 text-right text-white">2025</th>
+                                <th class="px-4 py-3 text-right text-sky-400">Гор. анализ (г/г)</th>
+                                <th class="px-4 py-3 text-right text-fuchsia-400">Верт. 2024</th>
+                                <th class="px-4 py-3 text-right text-fuchsia-400">Верт. 2025</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pnl-table-body">
+                            <!-- Rows injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- BALANCE TAB -->
+        <div id="tab-balance" class="tab-content">
+            <div class="space-y-6">
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 h-96 flex flex-col shadow-inner">
+                    <h4 class="text-slate-400 font-medium text-xs uppercase tracking-widest font-mono mb-4">динамика активов и пассивов</h4>
+                    <div class="flex-grow relative">
+                        <canvas id="chartBalance"></canvas>
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm">
+                    <table class="w-full text-sm text-left text-slate-300 font-mono">
+                        <thead class="text-xs text-slate-400 uppercase bg-slate-800/50 border-b border-slate-800 sticky top-0">
+                            <tr>
+                                <th class="px-4 py-3">Код</th>
+                                <th class="px-4 py-3">Статья</th>
+                                <th class="px-4 py-3 text-right">2023</th>
+                                <th class="px-4 py-3 text-right">2024</th>
+                                <th class="px-4 py-3 text-right text-white">2025</th>
+                                <th class="px-4 py-3 text-right text-sky-400">Гор. анализ (г/г)</th>
+                                <th class="px-4 py-3 text-right text-fuchsia-400">Верт. 2024</th>
+                                <th class="px-4 py-3 text-right text-fuchsia-400">Верт. 2025</th>
+                            </tr>
+                        </thead>
+                        <tbody id="balance-table-body">
+                            <!-- Rows injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // Data
+        const balanceDataRaw = [
+            { code: '1150', name: 'основные средства', y23: 13451, y24: 27095, y25: 14571 },
+            { code: '1160', name: 'доходные вложения', y23: 0, y24: 29500, y25: 21231 },
+            { code: '1100', name: 'итого внеоборотные активы', y23: 13451, y24: 56595, y25: 35802, isTotal: true },
+            { code: '1210', name: 'запасы', y23: 329, y24: 7587, y25: 4401 },
+            { code: '1220', name: 'ндс по приобретенным ценностям', y23: 0, y24: 4079, y25: 7187 },
+            { code: '1230', name: 'дебиторская задолженность', y23: 44624, y24: 97116, y25: 199346 },
+            { code: '1250', name: 'денежные средства', y23: 0, y24: 20, y25: 2217 },
+            { code: '1260', name: 'прочие оборотные активы', y23: 0, y24: 499, y25: 274 },
+            { code: '1200', name: 'итого оборотные активы', y23: 44953, y24: 109301, y25: 213425, isTotal: true },
+            { code: '1600', name: 'баланс (актив)', y23: 58404, y24: 165896, y25: 249227, isMainTotal: true },
+            { code: '1310', name: 'уставный капитал', y23: 10, y24: 10, y25: 10 },
+            { code: '1370', name: 'нераспределенная прибыль', y23: 11522, y24: 26110, y25: 37929 },
+            { code: '1300', name: 'итого капитал и резервы', y23: 11532, y24: 26120, y25: 37939, isTotal: true },
+            { code: '1450', name: 'прочие обязательства', y23: 11374, y24: 45622, y25: 33181 },
+            { code: '1400', name: 'итого долгосрочные обязательства', y23: 11374, y24: 45622, y25: 33181, isTotal: true },
+            { code: '1510', name: 'заемные средства', y23: 21957, y24: 61257, y25: 63748 },
+            { code: '1520', name: 'кредиторская задолженность', y23: 13541, y24: 32897, y25: 114359 },
+            { code: '1500', name: 'итого краткосрочные обязательства', y23: 35498, y24: 94154, y25: 178107, isTotal: true },
+            { code: '1700', name: 'баланс (пассив)', y23: 58404, y24: 165896, y25: 249227, isMainTotal: true },
+        ];
+
+        const pnlDataRaw = [
+            { code: '2110', name: 'выручка', y24: 1817133, y25: 2648127, isMainTotal: true },
+            { code: '2120', name: 'себестоимость продаж', y24: -1632202, y25: -2343643 },
+            { code: '2100', name: 'валовая прибыль (убыток)', y24: 184931, y25: 304484, isTotal: true },
+            { code: '2210', name: 'коммерческие расходы', y24: -158402, y25: -275951 },
+            { code: '2200', name: 'прибыль (убыток) от продаж', y24: 26529, y25: 28533, isTotal: true },
+            { code: '2320', name: 'проценты к получению', y24: 6, y25: 4 },
+            { code: '2330', name: 'проценты к уплате', y24: -4578, y25: -11095 },
+            { code: '2340', name: 'прочие доходы', y24: 46161, y25: 13497 },
+            { code: '2350', name: 'прочие расходы', y24: -49897, y25: -12569 },
+            { code: '2300', name: 'прибыль (убыток) до налогообложения', y24: 18221, y25: 18370, isTotal: true },
+            { code: '2410', name: 'текущий налог на прибыль', y24: -3633, y25: -4592 },
+            { code: '2400', name: 'чистая прибыль (убыток)', y24: 14588, y25: 13778, isMainTotal: true },
+        ];
+
+        const ratiosDataDef = [
+            { title: "соотношение ДЗ и КЗ", value: "1.74", norm: "~1.0", status: "bad", desc: "вам должны почти в 2 раза больше, чем должны вы. Это заморозка ваших оборотных средств.", sol: "ускорить сбор дебиторки (факторинг) или увеличить отсрочки перед своими поставщиками, чтобы сбалансировать потоки.", calc: { formula: "дебиторская задолженность / кредиторская задолженность", logic: "199 346k / 114 359k = 1.74" } },
+            { title: "период оборота дебиторки (DSO)", value: "27.5 дн", norm: "< 15", status: "bad", desc: "в среднем покупатели задерживают оплату на 27.5 дней (срок вырос на 41% г/г). это моя интерпретация, а не факт: часть выручки идет сразу в кэш, поэтому средний срок кажется не таким большим, но долги именно сетей сильно тянут бизнес вниз.", sol: "ввести прогрессивную шкалу скидок за раннюю оплату и жесткий стоп-лист отгрузок при просрочке свыше 14 дней.", calc: { formula: "(дебиторская задолженность / выручка) * 365", logic: "(199 346k / 2 648 127k) * 365 = 27.5" } },
+            { title: "период оборота кредиторки (DPO)", value: "17.8 дн", norm: "> DSO", status: "bad", desc: "вы платите поставщикам через 17.8 дней, а деньги от сетей получаете через 27.5. разрыв почти в 10 дней финансируется за счет ваших банковских кредитов.", sol: "пересмотреть договоры с поставщиками: синхронизировать ваши отсрочки по платежам с реальными сроками поступления денег от покупателей.", calc: { formula: "(кредиторская задолженность / себестоимость) * 365", logic: "(114 359k / 2 343 643k) * 365 = 17.8" } },
+            { title: "текущая ликвидность", value: "1.20", norm: "> 1.5", status: "bad", desc: "бизнес балансирует на грани. Оборотных активов едва хватает для покрытия коротких долгов, при этом 80% активов - это неликвидная дебиторка.", sol: "рефинансировать часть коротких обязательств в долгосрочные кредиты, чтобы снизить давление на оборотный капитал.", calc: { formula: "оборотные активы / краткосрочные обязательства", logic: "213 425k / 178 107k = 1.20" } },
+            { title: "абсолютная ликвидность", value: "0.01", norm: "> 0.2", status: "bad", desc: "денег на счетах (2.2 млн) хватит лишь на погашение 1% текущих обязательств (178 млн). Это риск кассового разрыва в любой день.", sol: "создать неснижаемый остаток на расчетном счете. Пересмотреть платежный календарь: платить поставщикам только в последний день отсрочки.", calc: { formula: "денежные средства / краткосрочные обязательства", logic: "2 217k / 178 107k = 0.01" } },
+            { title: "финансовый рычаг (D/E)", value: "5.57", norm: "< 1.0", status: "bad", desc: "на 1 рубль собственных средств приходится 5.57 рублей долгов. Бизнес перекредитован и уязвим к любым изменениям ставки ЦБ.", sol: "остановить привлечение новых займов. Направить всю чистую прибыль на гашение самых дорогих кредитов, не распределять дивиденды.", calc: { formula: "(долгосрочные + краткосрочные обязательства) / собственный капитал", logic: "(33 181k + 178 107k) / 37 939k = 5.57" } }
+        ];
+
+        const insightsData = [
+            { title: "вывод 1: сбой в мотивации отдела продаж", icon: "users", color: "rose", prob: "выручка компании взлетела на 45.7%, но коммерческие расходы выросли гораздо сильнее - на 74.2%. В итоге чистая прибыль вообще упала на 5.6%. Рост продаж генерирует убытки, а не деньги.", hyp: "это моя интерпретация, а не факт: ваши менеджеры замотивированы на «вал» (объем отгрузок). Им выгодно отгружать товар сетям с огромными отсрочками, скидками или дорогой логистикой, чтобы выполнить план и получить бонус. Прибыльность сделки их не волнует.", sols: ["платить процент или бонусы продажникам только от реально поступивших на счет денег (cash-in), а не от подписанных актов.", "привязать KPI менеджеров к маржинальности сделки: дал большую скидку сети - получил меньший бонус.", "ввести депремирование за просроченную дебиторку: если сеть не платит в срок, бонус менеджера сгорает или замораживается."] },
+            { title: "вывод 2: сети вымывают оборотный капитал", icon: "truck", color: "amber", prob: "в дебиторской задолженности заморожено 199 млн рублей (это ровно 80% всех ваших активов). При этом живых денег на счетах всего 2.2 млн. Бизнес работает как бесплатный банк для сетевых магазинов.", hyp: "это моя интерпретация, а не факт: сети диктуют жесткие условия (отсрочки 60-120 дней) и часто их нарушают. Вы вынуждены терпеть кассовые разрывы, так как боитесь потерять крупные контракты.", sols: ["подключить факторинг дебиторской задолженности (без права регресса): банк сразу оплатит вам 80-90% суммы отгрузки, а с сетями будет разбираться сам. Да, вы потеряете пару процентов на комиссии банка, но получите живые деньги в оборот.", "внедрить коммерческую политику скидок за раннюю оплату: например, базовый прайс при оплате через 60 дней, скидка 3% при оплате за 10 дней.", "ввести жесткие лимиты: автоматическая блокировка новых отгрузок в сеть при просрочке старых платежей хотя бы на 5 дней."] },
+            { title: "вывод 3: долговая спираль из-за нехватки кэша", icon: "banknote", color: "fuchsia", prob: "проценты по вашим кредитам выросли в 2.4 раза (до 11 млн руб). Это почти равно всей заработанной чистой прибыли за год (13.7 млн руб). Компания кредитуется короткими займами на 63.7 млн руб.", hyp: "это моя интерпретация, а не факт: так как сети не платят вам вовремя, вы вынуждены постоянно брать короткие, дорогие банковские кредиты, чтобы платить зарплаты и налоги. Это путь в финансовую яму, особенно при высокой ставке ЦБ.", sols: ["направить деньги, высвобожденные с помощью факторинга (из вывода 2), на срочное гашение самых дорогих банковских займов.", "перекредитоваться: рефинансировать часть коротких обязательств (63.7 млн) в один длинный кредит (на 3-5 лет) по госпрограмме поддержки МСП (если бизнес подходит под критерии), чтобы снизить ежемесячный платеж."] },
+            { title: "вывод 4: токсичная зависимость от поставщиков", icon: "scale", color: "sky", prob: "ваша кредиторская задолженность (то, что вы должны поставщикам) выросла в 3.5 раза за один год - до 114.3 млн руб. Бизнес существует за счет того, что кредитуется за счет своих же партнеров.", hyp: "это моя интерпретация, а не факт: вы перекрываете дыру от неплатежей сетей тем, что сами задерживаете оплату поставщикам сырья или услуг. Если 2-3 крупных поставщика подадут в суд, счета компании будут заблокированы.", sols: ["провести переговоры с топ-5 поставщиками: официально реструктуризировать старые долги в рассрочку, составив понятный график платежей. Это снимет риск внезапных судебных исков.", "заморозить найм нового персонала и капитальные расходы (например, покупку техники), пока соотношение дебиторки и кредиторки не придет в норму."] }
+        ];
+
+        // Formatters
+        const formatCur = (val) => new Intl.NumberFormat('ru-RU').format(val || 0);
+        const formatPct = (val) => isNaN(val) || !isFinite(val) ? '-' : `${(val > 0 ? '+' : '')}${val.toFixed(1)}%`;
+        const formatVPct = (val) => isNaN(val) || !isFinite(val) ? '-' : `${val.toFixed(1)}%`;
+        const calcH = (curr, prev) => {
+            if (!prev) return 0;
+            return ((Math.abs(curr) - Math.abs(prev)) / Math.abs(prev)) * 100 * (curr < 0 && curr < prev ? 1 : 1);
+        };
+
+        // Initialize UI Elements
+        function initRatios() {
+            const container = document.getElementById('ratios-container');
+            let html = '';
+            ratiosDataDef.forEach(r => {
+                const isBad = r.status === 'bad';
+                const borderHover = isBad ? 'hover:border-rose-500/80 hover:shadow-[0_0_30px_rgba(244,63,94,0.2)]' : 'hover:border-emerald-500/80 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)]';
+                const borderColor = isBad ? 'border-rose-500/40' : 'border-emerald-500/40';
+                const bgBar = isBad ? 'bg-rose-500 shadow-[0_0_10px_#f43f5e]' : 'bg-emerald-500 shadow-[0_0_10px_#10b981]';
+                const textVal = isBad ? 'text-rose-400' : 'text-emerald-400';
+                
+                html += `
+                <div class="bg-[#0B1121]/90 backdrop-blur-xl p-6 rounded-xl border relative overflow-hidden group h-full flex flex-col transition-all duration-500 ${borderColor} ${borderHover}">
+                    <div class="absolute top-0 left-0 w-1 h-full ${bgBar}"></div>
+                    <div class="mb-4 relative z-10">
+                        <h4 class="text-slate-400 font-medium text-xs uppercase tracking-widest mb-2 flex items-center">
+                            <span class="w-2 h-2 rounded-full ${isBad ? 'bg-rose-500' : 'bg-emerald-500'} mr-2 animate-pulse"></span>
+                            ${r.title}
+                        </h4>
+                        <div class="flex items-baseline space-x-3 border-b border-slate-800/80 pb-3">
+                            <span class="text-4xl font-bold font-mono ${textVal} drop-shadow-[0_0_8px_currentColor]">${r.value}</span>
+                            <span class="text-slate-500 text-[10px] uppercase bg-slate-900/80 px-2 py-1 rounded border border-slate-800">норма: ${r.norm}</span>
+                        </div>
+                    </div>
+                    <div class="mb-4 relative z-10 bg-[#050814]/80 border border-slate-800/80 rounded-lg p-3 font-mono text-xs shadow-inner">
+                        <div class="flex items-center mb-1 text-sky-400/80">
+                            <i data-lucide="database" class="w-3 h-3 mr-2"></i>
+                            <span class="uppercase tracking-widest text-[9px]">trace_calc_2025</span>
+                        </div>
+                        <div class="text-slate-300 mt-1">
+                            <p class="text-fuchsia-400/90 mb-1 opacity-90">формула: ${r.calc.formula}</p>
+                            <p class="text-sky-300/60 opacity-80">логика: ${r.calc.logic}</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-slate-300 mb-5 flex-grow relative z-10">
+                        <p class="mb-2"><strong class="text-slate-200">диагноз AI:</strong> ${r.desc}</p>
+                    </div>
+                    ${isBad ? `
+                    <div class="bg-rose-950/30 p-4 rounded-lg border border-rose-900/50 mt-auto relative z-10 backdrop-blur-sm">
+                        <p class="text-rose-400 font-bold mb-2 uppercase tracking-wide text-[10px] flex items-center">
+                            <i data-lucide="zap" class="w-3 h-3 mr-1"></i> решение:
+                        </p>
+                        <p class="text-rose-200/70 text-xs leading-relaxed">${r.sol}</p>
+                    </div>` : ''}
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function initInsights() {
+            const container = document.getElementById('insights-container');
+            let html = '';
+            insightsData.forEach(i => {
+                let solsHtml = i.sols.map(s => `<li>${s}</li>`).join('');
+                html += `
+                <div class="bg-slate-900 p-8 rounded-xl border border-slate-800 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-${i.color}-500"></div>
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <i data-lucide="${i.icon}" class="mr-3 text-${i.color}-500 w-6 h-6"></i>
+                        ${i.title}
+                    </h3>
+                    <div class="space-y-4 text-sm text-slate-400">
+                        <p><strong class="text-slate-200">факт из отчета:</strong> ${i.prob}</p>
+                        <p><strong class="text-amber-200/80">гипотеза:</strong> ${i.hyp}</p>
+                        <div class="bg-emerald-900/20 p-5 rounded-lg border border-emerald-800/50 mt-4">
+                            <p class="text-emerald-400 font-bold mb-3 uppercase tracking-wide text-xs">решения для собственника:</p>
+                            <ul class="list-disc pl-5 text-emerald-100/80 space-y-2">
+                                ${solsHtml}
+                            </ul>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderTableRows(data, tbodyId, isBalance) {
+            const tbody = document.getElementById(tbodyId);
+            let html = '';
+            data.forEach(row => {
+                const base24 = isBalance ? 165896 : 1817133;
+                const base25 = isBalance ? 249227 : 2648127;
+                const hAnalysis = calcH(row.y25, row.y24);
+                const v24 = Math.abs(row.y24) / base24 * 100;
+                const v25 = Math.abs(row.y25) / base25 * 100;
+                const isTotal = row.isTotal || row.isMainTotal;
+                const rowClass = isTotal ? 'bg-slate-800/80 font-bold text-white border-y border-slate-700' : 'border-b border-slate-800/50 hover:bg-slate-800/30';
+                const hColor = hAnalysis > 0 ? (isTotal ? 'text-white' : 'text-emerald-400') : 'text-rose-400';
+
+                html += `<tr class="${rowClass}">
+                    <td class="px-4 py-3 text-slate-500">${row.code}</td>
+                    <td class="px-4 py-3">${row.name}</td>
+                    ${isBalance ? `<td class="px-4 py-3 text-right">${formatCur(row.y23)}</td>` : ''}
+                    <td class="px-4 py-3 text-right">${formatCur(row.y24)}</td>
+                    <td class="px-4 py-3 text-right text-white">${formatCur(row.y25)}</td>
+                    <td class="px-4 py-3 text-right ${hColor}">${formatPct(hAnalysis)}</td>
+                    <td class="px-4 py-3 text-right">${formatVPct(v24)}</td>
+                    <td class="px-4 py-3 text-right">${formatVPct(v25)}</td>
+                </tr>`;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // Global Charts Defaults
+        Chart.defaults.color = '#64748b';
+        Chart.defaults.font.family = 'monospace';
+        const gridConfig = { color: '#1F2937', drawBorder: false };
+
+        let chartsInitialized = { ratios: false, pnl: false, balance: false };
+
+        function renderChartsRatios() {
+            if (chartsInitialized.ratios) return;
+            
+            new Chart(document.getElementById('chartRisk'), {
+                type: 'line',
+                data: {
+                    labels: ['2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Фин. рычаг', data: [4.06, 5.35, 5.57], borderColor: '#f43f5e', backgroundColor: '#f43f5e', tension: 0.4, borderWidth: 3, pointRadius: 5 },
+                        { label: 'Тек. ликвидность', data: [1.27, 1.16, 1.20], borderColor: '#38bdf8', backgroundColor: '#38bdf8', tension: 0.4, borderWidth: 3, pointRadius: 5 },
+                        { label: 'Отношение ДЗ к КЗ', data: [3.30, 2.95, 1.74], borderColor: '#a78bfa', backgroundColor: '#a78bfa', tension: 0.4, borderWidth: 3, pointRadius: 5 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { grid: gridConfig } } }
+            });
+
+            new Chart(document.getElementById('chartCycle'), {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2025'],
+                    datasets: [
+                        { label: 'DSO (от сетей)', data: [19.5, 27.5], borderColor: '#f59e0b', backgroundColor: '#f59e0b', tension: 0.4, borderWidth: 3, pointRadius: 5 },
+                        { label: 'DPO (поставщикам)', data: [7.4, 17.8], borderColor: '#10b981', backgroundColor: '#10b981', tension: 0.4, borderWidth: 3, pointRadius: 5 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { grid: gridConfig } } }
+            });
+            chartsInitialized.ratios = true;
+        }
+
+        function renderChartPnl() {
+            if (chartsInitialized.pnl) return;
+            const ctx = document.getElementById('chartPnl').getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(56, 189, 248, 0.3)');
+            gradient.addColorStop(1, 'rgba(56, 189, 248, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2025'],
+                    datasets: [
+                        { type: 'bar', label: 'Себестоимость', data: [1632202, 2343643], backgroundColor: '#475569', borderRadius: 4, barPercentage: 0.4 },
+                        { type: 'line', label: 'Выручка', data: [1817133, 2648127], borderColor: '#38bdf8', backgroundColor: gradient, fill: true, tension: 0.4, borderWidth: 3, pointRadius: 0 },
+                        { type: 'line', label: 'Чистая прибыль', data: [14588, 13778], borderColor: '#f43f5e', backgroundColor: '#f43f5e', tension: 0.4, borderWidth: 3, pointRadius: 6, pointBackgroundColor: '#f43f5e', pointBorderColor: '#0B0F19', pointBorderWidth: 2 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { x: { grid: { display: false } }, y: { grid: gridConfig, ticks: { callback: (v) => (v/1000).toFixed(0) + 'k' } } } }
+            });
+            chartsInitialized.pnl = true;
+        }
+
+        function renderChartBalance() {
+            if (chartsInitialized.balance) return;
+            new Chart(document.getElementById('chartBalance'), {
+                type: 'bar',
+                data: {
+                    labels: ['2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Активы (раздуваются)', data: [58404, 165896, 249227], backgroundColor: '#10b981', borderRadius: 4, barPercentage: 0.6 },
+                        { label: 'Пассивы (рост долгов)', data: [58404, 165896, 249227], backgroundColor: '#a78bfa', borderRadius: 4, barPercentage: 0.6 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { grid: gridConfig, ticks: { callback: (v) => (v/1000).toFixed(0) + 'k' } } } }
+            });
+            chartsInitialized.balance = true;
+        }
+
+        // Tab Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active styling from all buttons
+                tabBtns.forEach(b => {
+                    b.classList.remove('bg-slate-800', 'text-sky-400', 'shadow-[0_0_10px_rgba(56,189,248,0.2)]');
+                    b.classList.add('text-slate-500');
+                });
+                // Add active styling to clicked button
+                btn.classList.add('bg-slate-800', 'text-sky-400', 'shadow-[0_0_10px_rgba(56,189,248,0.2)]');
+                btn.classList.remove('text-slate-500');
+
+                // Hide all contents
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Show target content
+                const targetId = `tab-${btn.dataset.tab}`;
+                document.getElementById(targetId).classList.add('active');
+
+                // Init charts lazily when tab is opened
+                if(btn.dataset.tab === 'ratios') renderChartsRatios();
+                if(btn.dataset.tab === 'pnl') renderChartPnl();
+                if(btn.dataset.tab === 'balance') renderChartBalance();
+            });
+        });
+
+        // Setup on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initRatios();
+            initInsights();
+            renderTableRows(pnlDataRaw, 'pnl-table-body', false);
+            renderTableRows(balanceDataRaw, 'balance-table-body', true);
+            lucide.createIcons();
+            
+            // Initial chart render for default tab
+            renderChartsRatios();
+        });
+    </script>
+</body>
+</html>
