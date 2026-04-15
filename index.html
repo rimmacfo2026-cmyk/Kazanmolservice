@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Дашборд CFO</title>
+    <title>Дашборд CFO</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -38,8 +38,8 @@
     <div class="max-w-7xl mx-auto">
         <!-- Блок с картинкой -->
         <div class="mb-6">
-            <a href="https://yapx.ru/image/dZBeO" title="Изображение загружено на фотохостинг yapx.ru" target="_blank" class="inline-block">
-                <img src="https://i.yapx.ru/dZBeO.png" alt="Смотреть на фотохостинг сайте yapx.ru" class="h-20 object-contain drop-shadow-[0_0_15px_rgba(56,189,248,0.2)] hover:drop-shadow-[0_0_25px_rgba(56,189,248,0.5)] transition-all duration-300 rounded-xl">
+            <a href="https://yapx.ru/image/dZBeO" title="Изображение загружено на фотохостинг yapx.ru" target="_blank" class="inline-block bg-slate-900/30 p-2 rounded-xl border border-slate-800/80">
+                <img src="https://i.yapx.ru/dZBeO.png" alt="[Image of Логотип]" onerror="this.onerror=null; this.src='https://placehold.co/200x80/0f172a/38bdf8?text=[image_blocked]';" class="h-20 object-contain drop-shadow-[0_0_15px_rgba(56,189,248,0.2)] hover:drop-shadow-[0_0_25px_rgba(56,189,248,0.5)] transition-all duration-300 rounded-lg">
             </a>
         </div>
 
@@ -47,7 +47,7 @@
         <header class="mb-8 border-b border-slate-800 pb-6">
             <div class="flex items-center space-x-3 mb-2">
                 <i data-lucide="zap" class="text-sky-400 w-7 h-7"></i>
-                <h1 class="text-3xl font-bold text-white tracking-tight">AI Дашборд CFO</h1>
+                <h1 class="text-3xl font-bold text-white tracking-tight">Дашборд CFO</h1>
             </div>
             <p class="text-slate-500 font-mono text-sm ml-10">абсолютный анализ форм №1 и №2 :: [2023-2025]</p>
         </header>
@@ -129,7 +129,7 @@
 
         <!-- Tabs Navigation -->
         <div class="flex flex-wrap gap-2 mb-6 bg-slate-900 p-1 rounded-lg inline-flex border border-slate-800" id="tabs-nav">
-            <button data-tab="overview" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Инсайты AI</button>
+            <button data-tab="overview" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Ключевые инсайты</button>
             <button data-tab="ratios" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 bg-slate-800 text-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.2)]">Коэффициенты</button>
             <button data-tab="pnl" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Форма №2 (ОПУ)</button>
             <button data-tab="balance" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 text-slate-500 hover:text-slate-300">Форма №1 (Баланс)</button>
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                     <div class="text-sm text-slate-300 mb-5 flex-grow relative z-10">
-                        <p class="mb-2"><strong class="text-slate-200">диагноз AI:</strong> ${r.desc}</p>
+                        <p class="mb-2"><strong class="text-slate-200">диагноз:</strong> ${r.desc}</p>
                     </div>
                     ${isBad ? `
                     <div class="bg-rose-950/30 p-4 rounded-lg border border-rose-900/50 mt-auto relative z-10 backdrop-blur-sm">
